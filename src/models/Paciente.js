@@ -7,7 +7,7 @@ const pacienteSchema = mongoose.Schema({
         trim:true
     },
 
-    apeliido:{
+    apellido:{
         type:String,
         trim:true
     },

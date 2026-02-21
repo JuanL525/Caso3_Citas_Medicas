@@ -24,7 +24,10 @@ const citasSchema = mongoose.Schema({
         ref:'Especialidad',
         required:true
     }
-})
+},
+{
+    timestamps:true
+});
 
 const Citas = mongoose.model('Cita', citasSchema);
 export default Citas;
