@@ -1,5 +1,4 @@
 import Usuario from '../models/Usuario.js';
-import generarJWT from '../helpers/generarJWT.js';
 
 const registrar = async (req,res) =>{
     const {email} = req.body;
@@ -35,7 +34,6 @@ const autenticar = async (req,res) =>{
             nombre: usuario.nombre,
             apellido: usuario.apellido,
             email:usuario.email,
-            token: generarJWT(usuario.id)
         })
     }
     const error= new Error('Password incorrecto');
