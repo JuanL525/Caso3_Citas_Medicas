@@ -135,3 +135,48 @@ Desplázate hacia abajo en el formulario hasta encontrar **Environment Variables
 4. Abre **Postman**, pega ese enlace, agrégale tus rutas (ej. `/api/usuarios`), pon tu JSON en el Body y haz tus pruebas.
 
 ---
+
+### ⏱️ Paso a Paso para la Prueba de Rendimiento en el Examen
+
+**Paso 1: Preparar la herramienta (Haz esto apenas te sientes en la computadora)**
+Abre cualquier terminal (cmd, PowerShell o la de VS Code) y ejecuta:
+
+```bash
+npm install -g artillery
+
+```
+
+*Nota: Haces esto UNA sola vez en todo el examen. Te servirá para el Caso 1, 2, 3 o el que te toque.*
+
+**Paso 2: Obtener tu URL de producción**
+Una vez que hayas desplegado tu proyecto en Render y veas el letrero verde de "Live", copia el enlace de tu API y agrégale la ruta de algún `GET` que tengas.
+*Ejemplo:* `https://tu-api-examen.onrender.com/api/auditorios`
+
+**Paso 3: El Bombardeo (La prueba real)**
+En la misma terminal, ejecuta el comando de prueba apuntando a tu URL. Puedes usar los mismos números de nuestra prueba exitosa:
+
+```bash
+artillery quick --count 10 -n 20 https://tu-api-examen.onrender.com/api/auditorios
+
+```
+
+*(Esto enviará 200 peticiones en total).*
+
+**Paso 4: La Evidencia**
+
+1. Deja que la terminal trabaje unos segundos.
+2. Cuando aparezca el texto `Summary report`, revisa que el `http.codes.200` diga 200 y que el `vusers.failed` diga 0.
+3. ¡Tómale captura de pantalla a ese fragmento de la terminal y pégalo directo en tu informe de Word!
+
+---
+
+### 💡 El Plan B (Modo Paracaídas)
+
+Si por alguna razón la computadora de la universidad tiene bloqueada la instalación "Global" de programas y te tira un error rojo al intentar el Paso 1, ¡no entres en pánico! Usa este comando directamente sin instalar nada:
+
+```bash
+npx artillery quick --count 10 -n 20 https://tu-api-examen.onrender.com/api/auditorios
+
+```
+
+*(El `npx` le dice a Node: "Descarga la herramienta temporalmente, úsala esta vez y luego bórrala").*
